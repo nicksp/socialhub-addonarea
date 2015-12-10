@@ -1,0 +1,30 @@
+{
+  "name": "socialhub-addonarea",
+  "version": "0.1.1",
+  "author": "Nick Plekhanov <nick.plekhanov@gmail.com>",
+  "main": "server.js",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicksp/socialhub-addonarea.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.10.3",
+    "mongodb": "^2.1.0",
+    "mongoose": "~4.0",
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {
+    "bower": "^1.7.0",
+    "browser-sync": "^2.10.0",
+    "eslint": "^1.10.3",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "postinstall": "node_modules/.bin/bower install"
+  }
+}
