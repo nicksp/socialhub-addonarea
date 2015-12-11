@@ -2,6 +2,10 @@
 
 Addon area for SocialHub.
 
+## Prerequisites
+  
+  - npm i -g gulp bower nodemon
+
 ## Steps to start thing up
 
   - git clone https://github.com/nicksp/socialhub-addonarea.git
