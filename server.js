@@ -6,6 +6,7 @@ const app        = express();
 const bodyParser = require('body-parser');
 const morgan     = require('morgan');
 const mongoose   = require('mongoose');
+const db         = mongoose.connection;
 const config     = require('./config');
 const path       = require('path');
 
@@ -26,6 +27,16 @@ app.use((req, res, next) => {
 // Log all requests to the console
 app.use(morgan('dev'));
 
+// DB connection handlers
+db.on('error', (error) => {
+  console.error('mongoose connection:  ERROR');
+  throw new Error(error);
+});
+
+mongoose.connection.on('open', () => {
+  console.error('mongoose connection: OPEN');
+});
+
 // Connect to our database
 mongoose.connect(config.database);
 
@@ -38,7 +49,7 @@ app.use('/api', apiRoutes);
 
 // Main catchall route
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+  res.sendFile(path.join(__dirname + '/public/app/templates/index.html'));
 });
 
 // Start the server

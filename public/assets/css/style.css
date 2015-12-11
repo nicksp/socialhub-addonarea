@@ -1,0 +1,38 @@
+.home-hero {
+  font-size: 36px;
+  color: #00A3F3;
+  margin-top: -19px;
+  padding: 180px;
+  text-align : center;
+}
+
+@media only screen and ( max-width : 1000px ) {
+  .home-hero {
+    padding:100px;
+  }
+}
+
+@media only screen and ( max-width : 480px ) {
+  .home-hero {
+    padding:32px;
+  }
+}
+
+.home-hero .btn {
+  width: 160px;
+  margin: 10px 4px;
+}
+
+.navbar .btn {
+  margin-top: 7px;
+}
+
+.checkbox {
+  margin-left: 15px;
+  position: relative;
+  top: -15px;
+}
+
+.panel-footer {
+  height: 31px;
+}

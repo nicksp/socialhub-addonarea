@@ -12,7 +12,7 @@ var config =  {
   },
 
   scripts: {
-    src: ['app/**/*.js', 'public/app/*.js', 'server.js']
+    src: ['app/**/*.js', 'server.js']
   }
 };
 

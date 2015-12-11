@@ -1,7 +1,9 @@
 'use strict';
 
-const Accounts = require('../models/accounts');
-const config   = require('../../config');
+const accountCtrl  = require('../controllers/account');
+const addonCtrl    = require('../controllers/addon');
+const userCtrl     = require('../controllers/user');
+const emailCtrl    = require('../controllers/email');
 
 module.exports = (app, express) => {
 
@@ -12,19 +14,24 @@ module.exports = (app, express) => {
     res.json({ message: 'welcome to our api!' });
   });
 
+  // On routes that end in /emails/new
+  apiRouter.route('/emails/new')
+    .post(emailCtrl.sendEmail);
+
   // On routes that end in /accounts
   apiRouter.route('/accounts')
+    .get(accountCtrl.getItem);
 
-    // Get all the accounts (accessed at GET http://localhost:1330/api/accounts)
-    .get((req, res) => {
-      Accounts.find((err, data) => {
-        if (err) {
-          res.send(err);
-        }
-        // Return accounts
-        res.json(data);
-      });
-    });
+  // On routes that end in /users
+  apiRouter.route('/users')
+    .get(userCtrl.getItem);
+
+  // On routes that end in /features
+  apiRouter.route('/features')
+    .get(addonCtrl.getItems);
+
+  apiRouter.route('/features/:id')
+    .put(addonCtrl.updateItem);
 
   return apiRouter;
 };
