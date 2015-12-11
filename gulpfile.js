@@ -8,7 +8,7 @@ var config =  {
   browserSync: {
     browserPort: 3000,
     UIPort: 3001,
-    baseDir: './public/app/views'
+    baseDir: './public/app/templates'
   },
 
   scripts: {
