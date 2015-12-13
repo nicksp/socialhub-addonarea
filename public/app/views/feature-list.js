@@ -1,6 +1,6 @@
 'use strict';
 
-window.FeatureListView = Backbone.View.extend({
+SHApp.Views.FeatureListView = Backbone.View.extend({
 
   initialize: function () {
     this.render();
@@ -13,13 +13,13 @@ window.FeatureListView = Backbone.View.extend({
     $(this.el).html('<div class="feature-list"></div>');
 
     for (var i = 0; i < len; i++) {
-        $('.feature-list', this.el).append(new FeatureListItemView({model: features[i]}).render().el);
+        $('.feature-list', this.el).append(new SHApp.Views.FeatureListItemView({model: features[i]}).render().el);
     }
     return this;
   }
 });
 
-window.FeatureListItemView = Backbone.View.extend({
+SHApp.Views.FeatureListItemView = Backbone.View.extend({
 
   initialize: function () {
     this.model.bind("destroy", this.close, this);
@@ -46,8 +46,8 @@ window.FeatureListItemView = Backbone.View.extend({
 
   getMetaData: function () {
     var data = {};
-    var user = new UserModel();
-    var account = new AccountModel();
+    var user = new SHApp.Models.UserModel();
+    var account = new SHApp.Models.AccountModel();
 
     data['user'] = user.fetch();
     data['account'] = account.fetch();

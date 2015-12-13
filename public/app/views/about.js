@@ -1,4 +1,4 @@
-window.AboutView = Backbone.View.extend({
+SHApp.Views.AboutView = Backbone.View.extend({
 
   initialize: function () {
     this.render();

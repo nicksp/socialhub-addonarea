@@ -1,21 +1,21 @@
 'use strict';
 
-window.AccountModel = Backbone.Model.extend({
+SHApp.Models.AccountModel = Backbone.Model.extend({
   idAttribute: '_id',
   urlRoot: '/api/accounts'
 });
 
-window.FeatureModel = Backbone.Model.extend({
+SHApp.Models.FeatureModel = Backbone.Model.extend({
   idAttribute: '_id',
   urlRoot: '/api/features'
 });
 
-window.UserModel = Backbone.Model.extend({
+SHApp.Models.UserModel = Backbone.Model.extend({
   idAttribute: '_id',
   urlRoot: '/api/users'
 });
 
-window.FeaturesCollection = Backbone.Collection.extend({
-  model: FeatureModel,
+SHApp.Models.FeaturesCollection = Backbone.Collection.extend({
+  model: SHApp.Models.FeatureModel,
   url: '/api/features'
 });

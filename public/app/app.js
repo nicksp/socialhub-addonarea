@@ -9,13 +9,13 @@ var AppRouter = Backbone.Router.extend({
   },
 
   initialize: function () {
-    this.headerView = new HeaderView();
+    this.headerView = new SHApp.Views.HeaderView();
     $('.header').html(this.headerView.el);
     this.listenTo(Backbone, 'addon:add', this.setBadgeCount);
   },
 
   getCurrentUser: function () {
-    var user = new UserModel();
+    var user = new SHApp.Models.UserModel();
     return user.fetch();
   },
 
@@ -27,7 +27,7 @@ var AppRouter = Backbone.Router.extend({
   },
 
   showBadgeCount: function (reset) {
-    var addons = new FeaturesCollection();
+    var addons = new SHApp.Models.FeaturesCollection();
     var _this = this;
     var lsKey = 'sh-new-addon-num';
 
@@ -65,7 +65,7 @@ var AppRouter = Backbone.Router.extend({
 
   home: function () {
     if (!this.homeView) {
-      this.homeView = new HomeView();
+      this.homeView = new SHApp.Views.HomeView();
     }
 
     $('#content').html(this.homeView.el);
@@ -76,10 +76,10 @@ var AppRouter = Backbone.Router.extend({
     var _this = this;
 
     var p = id ? parseInt(id, 10) : 1;
-    var featureList = new FeaturesCollection();
+    var featureList = new SHApp.Models.FeaturesCollection();
     featureList.fetch({
       success: function (data) {
-        $('#content').html(new FeatureListView({ model: featureList }).el);
+        $('#content').html(new SHApp.Views.FeatureListView({ model: featureList }).el);
       }
     });
 
@@ -113,12 +113,12 @@ var AppRouter = Backbone.Router.extend({
 
   renderFeatures: function (data) {
     var features = this.getFeatureList(data);
-    $('#content').html(new FeatureListView({ model: features }).el);
+    $('#content').html(new SHApp.Views.FeatureListView({ model: features }).el);
   },
 
   about: function () {
     if (!this.aboutView) {
-      this.aboutView = new AboutView();
+      this.aboutView = new SHApp.Views.AboutView();
     }
     $('#content').html(this.aboutView.el);
     this.updateHeaderMeta();
@@ -126,7 +126,7 @@ var AppRouter = Backbone.Router.extend({
 });
 
 // Bootstrap app
-utils.loadTemplate(['HomeView', 'HeaderView', 'FeatureView', 'FeatureListItemView', 'AboutView'], function () {
+SHApp.Utils.loadTemplate(['HomeView', 'HeaderView', 'FeatureView', 'FeatureListItemView', 'AboutView'], function () {
   var appRouter = new AppRouter();
   Backbone.history.start({ pushState: false });
 });

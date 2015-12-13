@@ -1,4 +1,4 @@
-window.HomeView = Backbone.View.extend({
+SHApp.Views.HomeView = Backbone.View.extend({
 
   initialize: function () {
     this.render();

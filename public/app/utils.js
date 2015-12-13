@@ -1,6 +1,12 @@
 'use strict';
 
-window.utils = {
+// App namespaces
+var SHApp = SHApp || {};
+SHApp.Models = SHApp.Models || {};
+SHApp.Views = SHApp.Views || {};
+SHApp.Utils = SHApp.Utils || {};
+
+SHApp.Utils = {
 
   // Asynchronously load templates located in separate .html files
   loadTemplate: function (views, callback) {
@@ -8,9 +14,9 @@ window.utils = {
     var deferreds = [];
 
     $.each(views, function(index, view) {
-      if (window[view]) {
+      if (SHApp.Views[view]) {
         deferreds.push($.get('app/templates/' + view + '.html', function(data) {
-          window[view].prototype.template = _.template(data);
+          SHApp.Views[view].prototype.template = _.template(data);
         }));
       }
     });
