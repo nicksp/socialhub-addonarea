@@ -11,6 +11,7 @@ var AppRouter = Backbone.Router.extend({
   initialize: function () {
     this.headerView = new HeaderView();
     $('.header').html(this.headerView.el);
+    this.listenTo(Backbone, 'addon:add', this.setBadgeCount);
   },
 
   getCurrentUser: function () {
@@ -25,18 +26,41 @@ var AppRouter = Backbone.Router.extend({
     });
   },
 
-  showBadgeCount: function () {
+  showBadgeCount: function (reset) {
     var addons = new FeaturesCollection();
+    var _this = this;
+    var lsKey = 'sh-new-addon-num';
+
+    if (localStorage.getItem(lsKey) != null) {
+      $('.badge').html(localStorage.getItem(lsKey));
+      if (reset) {
+        this.setBadgeCount('');
+      }
+      return;
+    }
+
     addons.fetch({
       success: function (data) {
         $('.badge').html(data.length);
+        localStorage.setItem(lsKey, data.length);
+        if (reset) {
+          _this.setBadgeCount('');
+        }
       }
     });
   },
 
-  updateHeaderMeta: function () {
+  setBadgeCount: function (num) {
+    var $elem = $('.badge');
+    var newCount = typeof num !== 'undefined' ? num : parseInt($elem.text() || 0, 10) + 1;
+
+    $elem.text(newCount);
+    localStorage.setItem('sh-new-addon-num', newCount);
+  },
+
+  updateHeaderMeta: function (reset) {
     this.showCurrentUser();
-    this.showBadgeCount();
+    this.showBadgeCount(reset);
   },
 
   home: function () {
@@ -58,7 +82,10 @@ var AppRouter = Backbone.Router.extend({
         $('#content').html(new FeatureListView({ model: featureList }).el);
       }
     });
-    this.updateHeaderMeta();
+
+    // At this point - no new addons. We see them all now at the screen.
+    // Hence, reset its count in the badge.
+    this.updateHeaderMeta(true);
   },
 
   getFeatureList: function (data) {
