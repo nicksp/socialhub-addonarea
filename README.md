@@ -4,7 +4,7 @@ Addon area for SocialHub.
 
 ## Prerequisites
   
-  - npm i -g gulp bower nodemon
+  - npm i -g gulp nodemon
 
 ## Steps to start thing up
 
