@@ -19,14 +19,12 @@
     "nodemailer-mailgun-transport": "^1.0.1"
   },
   "devDependencies": {
-    "bower": "^1.7.0",
     "browser-sync": "^2.10.0",
     "eslint": "^1.10.3",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "postinstall": "node_modules/.bin/bower install"
+    "start": "nodemon server.js"
   }
 }
